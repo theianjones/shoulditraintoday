@@ -19,7 +19,7 @@ function Header() {
           </a>
         </div>
 
-        <div className="md:flex md:items-end md:justify-between">
+        <div className="flex md:items-end md:justify-between">
           <div className="flex items-center md:ml-12">
             <a
               href="#"
