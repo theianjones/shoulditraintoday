@@ -1,6 +1,12 @@
 import DarkModeToggle from './dark-mode-toggle'
-
-function Header() {
+import React from 'react'
+function Header({
+  email,
+  signOut = () => {},
+}: {
+  email?: string | null
+  signOut?: () => void
+}) {
   return (
     <div className="relative bg-white-50 dark:bg-gray-800">
       <div className="flex justify-between items-center px-4 py-6 sm:px-6">
@@ -20,21 +26,31 @@ function Header() {
         </div>
 
         <div className="flex md:items-end md:justify-between">
-          <div className="flex items-center md:ml-12">
-            <a
-              href="#"
-              className="text-base font-medium dark:text-gray-200 text-gray-900 hover:text-gray-900"
-            >
-              Sign in
-            </a>
-            <a
-              href="#"
-              className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-700 hover:bg-red-800"
-            >
-              Sign up
-            </a>
-          </div>
-          <DarkModeToggle />
+          {email ? (
+            <div className="flex items-center">
+              <p className="pr-2">{email}</p>
+              <button
+                className="text-base font-medium dark:text-gray-200 text-gray-900 hover:text-gray-900"
+                type="button"
+                onClick={() => {
+                  signOut()
+                }}
+              >
+                Sign out
+              </button>
+              <DarkModeToggle />
+            </div>
+          ) : (
+            <div className="flex items-center md:ml-12">
+              <a
+                href="/login"
+                className="text-base font-medium dark:text-gray-200 text-gray-900 hover:text-gray-900"
+              >
+                Sign in
+              </a>
+              <DarkModeToggle />
+            </div>
+          )}
         </div>
       </div>
     </div>
