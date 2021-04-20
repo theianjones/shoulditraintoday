@@ -36,7 +36,7 @@ Testing is facilitated through React Testing Library and Jest.
 
 This section will describe how to get the correct values for these variables found in `./src/utils/firebase/credentials.ts`
 
-**You likely won't need to create a project**. Contact the egghead team if you need access to the firebase datastore.
+**You likely won't need to create a project**. Contact the team if you need access to the firebase datastore.
 
 Create a Firebase project: click `add project` on [this page](https://console.firebase.google.com/u/0/).
 
@@ -108,7 +108,7 @@ COOKIE_SECRET_PREVIOUS=some-random-guid
 
 Restart the next server if it's running!
 
-Now you're app can authenticate logged in egghead users and post their quiz answers to firestore.
+Now you're app can authenticate logged in users and post their quiz answers to firestore.
 
 ### Firebase Authentication
 
