@@ -1,6 +1,6 @@
 import {init} from 'next-firebase-auth'
 import {APP_CREDENTIALS, ADMIN_CREDENTIALS} from './credentials'
-
+import NEXT_SEO from '../../../next-seo.json'
 const initAuth = () => {
   init({
     authPageURL: '/auth',
@@ -25,7 +25,7 @@ const initAuth = () => {
       projectId: APP_CREDENTIALS.projectId,
     },
     cookies: {
-      name: 'ExampleApp', // required
+      name: NEXT_SEO.title, // required
       // Keys are required unless you set `signed` to `false`.
       // The keys cannot be accessible on the client side.
       keys: [
