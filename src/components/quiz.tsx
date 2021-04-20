@@ -31,7 +31,7 @@ let quiz = {
 function Quiz({name = 'Quiz'}) {
   return (
     <div className="grid grid-cols-6 gap-4 mt-8">
-      <h1 className="text-4xl leading-10 font-extrabold text-center col-start-2 col-span-4 mb-4">
+      <h1 className="text-4xl leading-10 font-extrabold text-center col-start-2 col-span-4 sm:col-start-3 sm:col-span-2 mb-4">
         {quiz.question}
       </h1>
       <Formik
@@ -42,7 +42,7 @@ function Quiz({name = 'Quiz'}) {
         }}
       >
         {({values}) => (
-          <Form className="col-start-2 col-span-4">
+          <Form className="col-start-2 col-span-4 sm:col-start-3 sm:col-span-2">
             <legend className="sr-only">Server size</legend>
             <div className="space-y-4">
               {quiz.answers.map((option) => (
@@ -57,7 +57,7 @@ function Quiz({name = 'Quiz'}) {
                 </Option>
               ))}
             </div>
-            <Button className="col-start-2 col-span-4 mt-10">
+            <Button className="col-start-2 col-span-4 md:col-start-3 mt-10">
               Next Question
             </Button>
           </Form>
