@@ -48,6 +48,7 @@ function Quiz({name = 'Quiz'}) {
               {quiz.answers.map((option) => (
                 <Option label={option.option} key={option.value}>
                   <Field
+                    className="bg-green-600"
                     type="radio"
                     name={name}
                     value={option.value}
@@ -67,8 +68,14 @@ function Quiz({name = 'Quiz'}) {
 }
 
 let Option = ({children, label}: any) => {
+  const checked = children.props.checked
+  const greenBorder = checked
+    ? `border-green-500 hover:border-green-600`
+    : 'border-gray-30 hover:border-green-600'
   return (
-    <label className="relative block rounded-lg border border-gray-300 bg-white shadow-sm px-6 py-4 cursor-pointer hover:border-gray-400 sm:flex sm:justify-between focus-within:ring-1 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+    <label
+      className={`relative rounded-lg border-2 0 bg-white shadow-sm px-6 py-4 cursor-pointer  sm:flex sm:justify-between focus-within:ring-1 focus-within:ring-offset-2 focus-within:ring-offset-green-400 flex items-center justify-between ${greenBorder}`}
+    >
       {children}
       <div className="flex items-center">
         <div className="text-3xl">
