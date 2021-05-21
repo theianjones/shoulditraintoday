@@ -1,10 +1,10 @@
 {
-  "title": "Next.js and MDX fueled",
+  "title": "shoulditrain.today",
   "titleTemplate": "%s | Joel",
-  "description": "THis is my Next.js TypeScript Tailwind Site",
+  "description": "This site will help you decide if you have the energy to train today.",
   "favicon": "/favicon.ico",
   "additionalMetaTags": [
-    {"property": "author", "content": "joel hooks"},
+    {"property": "author", "content": "Ian and Zac"},
     {
       "property": "keywords",
       "content": ""
@@ -12,14 +12,14 @@
   ],
   "twitter": {
     "cardType": "summary",
-    "handle": "jhooks",
-    "site": "jhooks"
+    "handle": "_jonesian",
+    "site": "_jonsian"
   },
   "openGraph": {
     "type": "website",
-    "site_name": "Joel's Site",
+    "site_name": "shoulditrain",
     "profile": {
-      "firstName": "Joel"
+      "firstName": "Ian"
     },
     "images": [
       {

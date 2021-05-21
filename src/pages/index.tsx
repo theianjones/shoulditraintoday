@@ -3,7 +3,14 @@ import Head from 'next/head'
 
 import Header from 'components/header'
 import Quiz from 'components/quiz'
-export default function Home() {
+import {
+  useAuthUser,
+  withAuthUser,
+  withAuthUserTokenSSR,
+} from 'next-firebase-auth'
+function Home() {
+  const AuthUser = useAuthUser()
+  console.log({AuthUser})
   return (
     <div className="dark:bg-gray-800 bg-gray-50">
       <Head>
@@ -11,8 +18,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header />
+      <Header email={AuthUser.email} signOut={AuthUser.signOut} />
       <Quiz></Quiz>
     </div>
   )
 }
+
+export const getServerSideProps = withAuthUserTokenSSR()()
+
+export default withAuthUser()(Home)
