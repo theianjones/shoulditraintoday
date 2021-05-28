@@ -91,6 +91,8 @@ Each `user` object will have an `answers` key that is an array of each quiz that
 
 ### Displaying the history of user information
 
+TODO
+
 ## Build the project yourself
 
 First, run the development server:
@@ -126,16 +128,10 @@ We want the web option. There will be a `</>` icon, click this and you will star
 Now youll be presented with code that looks like this:
 
 ```html
-<!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
 <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-analytics.js"></script>
 
 <script>
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   var firebaseConfig = {
     apiKey: 'AIzaSyB6tKhpnB9baUxR8FVC90-gLbERVu_q-uo',
     authDomain: 'test-5398a.firebaseapp.com',
@@ -145,7 +141,6 @@ Now youll be presented with code that looks like this:
     appId: '1:653030811583:web:5931db3465d6125688e30a',
     measurementId: 'G-JJXDVMKM9W',
   }
-  // Initialize Firebase
   firebase.initializeApp(firebaseConfig)
   firebase.analytics()
 </script>
