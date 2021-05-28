@@ -1,4 +1,4 @@
-[![Depfu](https://badges.depfu.com/badges/0eb0914942401daa2b5b7022cfcba170/count.svg)](https://depfu.com/github/joelhooks/next-typescript-tailwind-mdx-starter?project_id=17632)
+[![Depfu](https://badges.depfu.com/badges/3510c0fc8a9b17a045ef2389a436fe9d/count.svg)](https://depfu.com/github/theianjones/shoulditraintoday?project_id=27149)
 
 This is an opinonated Next.js starter project that makes it relatively simple to spin up a new project.
 
