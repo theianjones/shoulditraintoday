@@ -4,7 +4,7 @@
 
 This project is based on a [quiz from a local (Northern VA, USA) nutrition company](https://www.instagram.com/p/CL7kiaqnP80/). Essentially, it is an 8 question quiz where the user must self-assess their answers. We then apply points to the answers that the user gives. At the end of the quiz, we perform a calculation and give a "% of readiness" for the user to expect from themselves.
 
-This number is by no means definitive but if this quiz is taking over a couple weeks, it would give you a good baseline of how ready you feel to train on a daily basis.
+This number is by no means definitive after taking the quiz consistently, it would give you a good baseline of how ready you feel to train on a given day.
 
 So here is an example of what a question would be:
 
@@ -24,6 +24,12 @@ There are two main parts to this app:
 
 1. Capturing and storing user information
 2. Displaying the history of user information
+
+From a technical standpoint, this project demonstrates a few application state problems.
+
+The form itself has quite a bit of state. Theres user entered information you have to keep track of. Along with that, theres user progress threw a somewhat lengthy quiz that needs to be accounted for.
+
+Along side the form state, we also need to store the answers in a database. This involves making asynchronous calls to a service and handling any errors that may happen while the user is in the middle of the quiz.
 
 ### Capturing and Storing Quiz Data
 
