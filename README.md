@@ -4,7 +4,7 @@
 
 This project is based on a [quiz from a local (Northern VA, USA) nutrition company](https://www.instagram.com/p/CL7kiaqnP80/). Essentially, it is an 8 question quiz where the user must self-assess their answers. We then apply points to the answers that the user gives. At the end of the quiz, we perform a calculation and give a "% of readiness" for the user to expect from themselves.
 
-This number is by no means definitive after taking the quiz consistently, it would give you a good baseline of how ready you feel to train on a given day.
+This number is by no means definitive but after taking the quiz consistently you should see what a good baseline recovery is for yourself on any given day. This number will represent how ready you feel to train on that day
 
 So here is an example of what a question would be:
 
