@@ -54,46 +54,58 @@ For displaying the quizzes themselves, we will be storing them in a json file an
 
 We are using [google firestore](https://firebase.google.com/) to store the data entered. A document store (nosql database) gives us the flexibility to store this quiz data however we see fit. We can adjust the model in the future with very little cost.
 
-Here is the initial data model for our quiz answer:
-
-```js
-{
-  createdAt: '2021-05-28'
-  guid: '92db5f82-0390-40fc-b078-70e7594c8043'
-  version: 0
-  answers: [
-    {
-      guid: 'b6656926-f6af-4a95-b7aa-b695c53f610f'
-      question: 'How many days in a row have you trained?',
-      answer: '2 days'
-      score: 3
-    }
-  ]
-}
-```
-
-This will be the core piece of data for our app but its not the whole story. Firestore breaks things down into `collections` and `documents`. You'll notice a version field in the object. This gives us a way to change the quiz and know exactly which quiz they took. We give each quiz a guid so we can identify them if we ever want to add another quiz in the future.
+Firestore breaks things down into `collections` and `documents`. You'll notice a version field in the object. This gives us a way to change the quiz and know exactly which quiz they took. We give each quiz a guid so we can identify them if we ever want to add another quiz in the future.
 
 We will have a top-level `users` collection. This collection will hold `user` documents. Each `user` document will look like this:
 
 ```js
 {
-  answers: [{
-    createdAt: '2021-05-28'
-    guid: '92db5f82-0390-40fc-b078-70e7594c8043'
-    quizVersion: 0
+  users: [{
+    id: 'some-id',
+    currentAnswer: 'quiz-answer-guid-02',
     answers: [
-      {
-        question: 'How many days in a row have you trained?',
-        answer: '2 days'
-        score: 3
-      }
+      {id: 'quiz-answer-guid-01', totalScore: 75.0}
+      {id: 'quiz-answer-guid-02'}
     ]
   }]
 }
 ```
 
-Each `user` object will have an `answers` key that is an array of each quiz that they have taken. Its important to note that Firebase is taking care of authentication for us and isn't something I'm going to explain in detail with this project.
+Each `user` object will have an array of `answers` guids. We can use these guids to fetch the quiz answers we record.
+
+The `answers` collection will look like this:
+
+```js
+{
+  answers: [{
+    createdAt: '2021-05-28',
+    id: 'quiz-answer-guid-02',
+    quizVersion: 0,
+    quizId: 'some-quiz-guid'
+    totalScore: 50.0,
+    responses: [{id: 'some-response-guid'}]
+ }]
+}
+```
+
+As you can see, these answers have a responses array, which are the responses to individual quiz questions. Answers also have a `totalScore` which is the score we will give when the user is finished answering the quiz.
+
+Heres the table for the responses:
+
+```js
+{
+  responses: [{
+    id: 'some-response-guid',
+    question: 'How many days in a row have you trained?',
+    selectedResponse: '2 days',
+    score: 3
+  }]
+}
+```
+
+The `selectedResponse` field is the text that the user selected, while the `score` is the number we use to caculate the `totalScore` for the `answer`.
+
+Its important to note that Firebase is taking care of authentication for us and isn't something I'm going to explain in detail with this project.
 
 ### Displaying the history of user information
 
