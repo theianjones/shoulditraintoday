@@ -27,7 +27,7 @@ There are two main parts to this app:
 
 From a technical standpoint, this project demonstrates a few application state problems.
 
-The form itself has quite a bit of state. There's user-entered information you have to keep track of. Along with that, there's user progress through a somewhat lengthy quiz that needs to be accounted for.
+The form itself has quite a bit of state. There's user-entered information you have to keep track of. Along with that, there's user progress through a somewhat lengthy quiz that needs to be accounted for. After the user has answered all the quiz questions, we will calculate a "readiness score" for that day (add each response score up and multiply by 4).
 
 Along side the form state, we also need to store the answers in a database. This involves making asynchronous calls to a service and handling any errors that may happen while the user is in the middle of the quiz.
 
@@ -64,7 +64,7 @@ We will have a top-level `users` collection. This collection will hold `user` do
     id: 'some-id',
     currentAnswer: 'quiz-answer-guid-02',
     answers: [
-      {id: 'quiz-answer-guid-01', totalScore: 75.0}
+      {id: 'quiz-answer-guid-01', totalScore: 75.0},
       {id: 'quiz-answer-guid-02'}
     ]
   }]
@@ -81,7 +81,7 @@ The `answers` collection will look like this:
     createdAt: '2021-05-28',
     id: 'quiz-answer-guid-02',
     quizVersion: 0,
-    quizId: 'some-quiz-guid'
+    quizId: 'some-quiz-guid',
     totalScore: 50.0,
     responses: [{id: 'some-response-guid'}]
  }]
