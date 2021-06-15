@@ -1,0 +1,160 @@
+{
+  "version": 0.0,
+  "id": "375623e0-92dd-4815-b507-4d577a55f37c",
+  "questions": [
+    {
+      "value": "How many days in a row have you trained?",
+      "options": [
+        {
+          "value": "4+ days",
+          "score": 1
+        },
+        {
+          "value": "3 days",
+          "score": 2
+        },
+        {
+          "value": "2 days",
+          "score": 3
+        },
+        {
+          "value": "1 days",
+          "score": 4
+        },
+        {
+          "value": "Coming off a rest day",
+          "score": 5
+        }
+      ]
+    },
+    {
+      "value": "How sore are you?",
+      "options": [
+        {
+          "value": "Can't walk, send help",
+          "score": 1
+        },
+        {
+          "value": "I'm pretty sore and it impacts my day",
+          "score": 2
+        },
+        {
+          "value": "I'm Kinda sore, but it's nothing I can't handle",
+          "score": 3
+        },
+        {
+          "value": "I feel awesome",
+          "score": 4
+        }
+      ]
+    },
+    {
+      "value": "How excited are you to train today?",
+      "options": [
+        {
+          "value": "I actually don't want to train",
+          "score": 1
+        },
+        {
+          "value": "I'll train, but ONLY because I have to",
+          "score": 2
+        },
+        {
+          "value": "I want to and I'll do my best",
+          "score": 3
+        },
+        {
+          "value": "I am PUMPED to train",
+          "score": 4
+        }
+      ]
+    },
+    {
+      "value": "Whats your mood like?",
+      "options": [
+        {
+          "value": "Leave me alone",
+          "score": 1
+        },
+        {
+          "value": "Eh, I'm alright. A little stressed",
+          "score": 2
+        },
+        {
+          "value": "I feel good",
+          "score": 3
+        }
+      ]
+    },
+    {
+      "value": "What are your hormones like?",
+      "byline": "Sex drive and appetite",
+      "options": [
+        {
+          "value": "Both are...lacking",
+          "score": 1
+        },
+        {
+          "value": "I'm lacking in one",
+          "score": 2
+        },
+        {
+          "value": "I'm hungry...for both",
+          "score": 3
+        }
+      ]
+    },
+    {
+      "value": "How’s your immune system?",
+      "byline": "sickness, gastrointestinal, stool",
+      "options": [
+        {
+          "value": "I'm actually sick",
+          "score": 0
+        },
+        {
+          "value": "I'm having issues with digestion and poop",
+          "score": 1
+        },
+        {
+          "value": "I'm having issues with either digestion or poop",
+          "score": 2
+        },
+        {
+          "value": "No issues",
+          "score": 3
+        }
+      ]
+    },
+    {
+      "value": "How many hours of sleep did you get last night?",
+      "options": [
+        {
+          "value": "Less than 7 hours",
+          "score": 0
+        },
+        {
+          "value": "Between 7 and 8 hours",
+          "score": 1
+        },
+        {
+          "value": "I got more than 8 hours",
+          "score": 2
+        }
+      ]
+    },
+    {
+      "value": "What was your sleep quality like?",
+      "options": [
+        {
+          "value": "I tossed. I turned. It wasn't good.",
+          "score": 0
+        },
+        {
+          "value": "I got restful sleep without much disturbance.",
+          "score": 1
+        }
+      ]
+    }
+  ]
+}
