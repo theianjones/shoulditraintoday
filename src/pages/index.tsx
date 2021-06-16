@@ -1,6 +1,5 @@
 import React from 'react'
 import Head from 'next/head'
-
 import Header from 'components/header'
 import Quiz from 'components/quiz'
 import {
@@ -10,7 +9,6 @@ import {
 } from 'next-firebase-auth'
 function Home() {
   const AuthUser = useAuthUser()
-  console.log({AuthUser})
   return (
     <div className="dark:bg-gray-800 bg-gray-50">
       <Head>
