@@ -136,7 +136,7 @@ const shouldITrainQuizMachine = createMachine<
     },
   },
   {
-    services: {submitPayment: () => () => {}},
+    services: {},
     actions: {
       assignScore: assign((context, event: any) => {
         const eventData = event.data
