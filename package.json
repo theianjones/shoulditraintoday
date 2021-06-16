@@ -35,7 +35,7 @@
     "remark-slug": "^6.0.0"
   },
   "devDependencies": {
-    "@babel/plugin-transform-react-jsx": "^7.13.12",
+    "@babel/plugin-transform-react-jsx": "^7.14.5",
     "@mdx-js/loader": "^1.6.22",
     "@tailwindcss/typography": "^0.4.0",
     "@testing-library/jest-dom": "^5.11.9",
