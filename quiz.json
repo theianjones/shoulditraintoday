@@ -4,6 +4,7 @@
   "questions": [
     {
       "value": "How many days in a row have you trained?",
+      "id": "trained",
       "options": [
         {
           "value": "4+ days",
@@ -29,6 +30,7 @@
     },
     {
       "value": "How sore are you?",
+      "id": "soreness",
       "options": [
         {
           "value": "Can't walk, send help",
@@ -50,6 +52,7 @@
     },
     {
       "value": "How excited are you to train today?",
+      "id": "excited",
       "options": [
         {
           "value": "I actually don't want to train",
@@ -71,6 +74,7 @@
     },
     {
       "value": "Whats your mood like?",
+      "id": "mood",
       "options": [
         {
           "value": "Leave me alone",
@@ -88,6 +92,7 @@
     },
     {
       "value": "What are your hormones like?",
+      "id": "hormones",
       "byline": "Sex drive and appetite",
       "options": [
         {
@@ -106,6 +111,7 @@
     },
     {
       "value": "How’s your immune system?",
+      "id": "immune",
       "byline": "sickness, gastrointestinal, stool",
       "options": [
         {
@@ -128,6 +134,7 @@
     },
     {
       "value": "How many hours of sleep did you get last night?",
+      "id": "hours",
       "options": [
         {
           "value": "Less than 7 hours",
@@ -145,6 +152,7 @@
     },
     {
       "value": "What was your sleep quality like?",
+      "id": "quality",
       "options": [
         {
           "value": "I tossed. I turned. It wasn't good.",
