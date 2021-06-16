@@ -1,6 +1,5 @@
 import React, {FormEvent, MouseEventHandler, SyntheticEvent} from 'react'
 import {FunctionComponent} from 'react'
-import {Formik, Field, Form} from 'formik'
 import useShouldITrainMachine from 'hooks/use-should-i-train-machine'
 import {find} from 'lodash'
 import {Question as QuestionType} from 'utils/generate-question-states'
