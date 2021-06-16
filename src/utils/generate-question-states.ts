@@ -1,4 +1,4 @@
-import quizData from '../../quiz.json'
+import quizData from 'data/should-i-train.json'
 import capitalize from 'lodash/capitalize'
 import findIndex from 'lodash/findIndex'
 import toUpper from 'lodash/toUpper'
@@ -8,17 +8,17 @@ const getStateName = (questionId: string) => `entering${capitalize(questionId)}`
 const getCurrentQuestionIndex = (questionId: string) =>
   findIndex(quizData.questions, {id: questionId})
 
-const getPrevQuestion = (questionId: string) => {
+export const getPrevQuestion = (questionId: string) => {
   const currentIndex = getCurrentQuestionIndex(questionId)
   return quizData.questions[currentIndex - 1]
 }
 
-const getNextQuestion = (questionId: string) => {
+export const getNextQuestion = (questionId: string) => {
   const currentIndex = getCurrentQuestionIndex(questionId)
   return quizData.questions[currentIndex + 1]
 }
 
-interface Question {
+export interface Question {
   value: string
   id: string
   byline?: string
