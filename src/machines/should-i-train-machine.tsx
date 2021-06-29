@@ -1,7 +1,7 @@
 import {assign, createMachine} from 'xstate'
-import {
+import questionStates, {
   Question,
-  getNextQuestion,
+  getNextQuestion
 } from 'utils/generate-question-states'
 import quiz from 'data/should-i-train.json'
 import { setAnswersForUser } from 'utils/firebase/db'
@@ -24,6 +24,7 @@ type Answer = {
 export type ShouldITrainQuizMachineEvent =
   | {
       type: 'BACK'
+      data: unknown
     }
   | {
       type: 'CONFIRM'
@@ -38,113 +39,31 @@ const isAnswer = (eventData: any): eventData is Answer => {
   )
 }
 
-const enteringFormStates = [
-  'enteringTrained',
-  'enteringSoreness',
-  'enteringExcited',
-  'enteringMood',
-  'enteringHormones',
-  'enteringImmune',
-  'enteringHours',
-  'enteringQuality',
-]
-
-
 const shouldITrainQuizMachine = createMachine<
   ShouldITrainQuizMachineContext,
   ShouldITrainQuizMachineEvent
 >(
   {
     id: 'shouldITrainForm',
-    initial: 'enteringTrained',
+    initial: 'entering',
     context: {responses: [], currentQuestion: quiz.questions[0]},
     states: {
-      enteringTrained: {
+      entering: {
         on: {
-          CONFIRM: {
-            target: 'enteringSoreness',
-            actions: ['assignScore', 'assignCurrentQuestion'],
-          },
-        },
+          CONFIRM: [
+            {
+              target: 'saving',
+              cond: 'nextQuestionIsEmpty',
+              actions: ['assignScore']
+            },
+            {
+              target: 'entering',
+              actions: ['assignScore', 'assignCurrentQuestion'],
+            }
+          ]
+        }
       },
-      enteringSoreness: {
-        on: {
-          BACK: {
-            target: 'enteringTrained',
-          },
-          CONFIRM: {
-            target: 'enteringExcited',
-            actions: ['assignScore', 'assignCurrentQuestion'],
-          },
-        },
-      },
-      enteringExcited: {
-        on: {
-          BACK: {
-            target: 'enteringSoreness',
-          },
-          CONFIRM: {
-            target: 'enteringMood',
-            actions: ['assignScore', 'assignCurrentQuestion'],
-          },
-        },
-      },
-      enteringMood: {
-        on: {
-          BACK: {
-            target: 'enteringExcited',
-          },
-          CONFIRM: {
-            target: 'enteringHormones',
-            actions: ['assignScore', 'assignCurrentQuestion'],
-          },
-        },
-      },
-      enteringHormones: {
-        on: {
-          BACK: {
-            target: 'enteringMood',
-          },
-          CONFIRM: {
-            target: 'enteringImmune',
-            actions: ['assignScore', 'assignCurrentQuestion'],
-          },
-        },
-      },
-      enteringImmune: {
-        on: {
-          BACK: {
-            target: 'enteringHormones',
-          },
-          CONFIRM: {
-            target: 'enteringHours',
-            actions: ['assignScore', 'assignCurrentQuestion'],
-          },
-        },
-      },
-      enteringHours: {
-        on: {
-          BACK: {
-            target: 'enteringImmune',
-          },
-          CONFIRM: {
-            target: 'enteringQuality',
-            actions: ['assignScore', 'assignCurrentQuestion'],
-          },
-        },
-      },
-      enteringQuality: {
-        on: {
-          BACK: {
-            target: 'enteringHours',
-          },
-          CONFIRM: {
-            target: 'savingAnswers',
-            actions: ['assignScore', 'assignCurrentQuestion'],
-          },
-        },
-      },
-      savingAnswers: {
+      saving: {
         invoke: {
           id: 'savingAnswers',
           src: 'saveAllAnswers',
@@ -184,6 +103,14 @@ const shouldITrainQuizMachine = createMachine<
         return {currentQuestion: nextQuestion}
       }),
     },
+    guards: {
+      nextQuestionIsEmpty: (_context, event) => {
+        const eventData = event.data
+        if (!isAnswer(eventData)) return false
+        const nextQuestion = getNextQuestion(eventData.questionId)
+        return !nextQuestion
+      }
+    }
   },
 )
 
