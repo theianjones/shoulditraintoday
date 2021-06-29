@@ -71,40 +71,41 @@ We will have a top-level `users` collection. This collection will hold `user` do
 }
 ```
 
-Each `user` object will have an array of `answers` guids. We can use these guids to fetch the quiz answers we record.
+Each `user` object will have an array of `responses` guids. We can use these guids to fetch the quiz answers we record.
 
-The `answers` collection will look like this:
+The `responses` collection will look like this:
+
+```js
+{
+  responses: [{
+    id: 'some-response-guid',
+    userId: 'some-user-id-hash',
+    totalScore: 83,
+    createdAt: '2021-05-28'
+  }]
+}
+```
+
+Responses have a `totalScore` which is the score we will give when the user is finished answering the quiz.
+
+Heres the table for the answers:
+
 
 ```js
 {
   answers: [{
     createdAt: '2021-05-28',
     id: 'quiz-answer-guid-02',
-    quizVersion: 0,
-    quizId: 'some-quiz-guid',
     userId: 'some-user-id',
     question: 'How many days in a row have you trained?',
+    questionId: 'question-id',
     selectedResponse: '2 days',
-    score: 3
+    score: 3,
+    userId: 'some-user-id-hash',
+    responseId: 'some-response-id-hash'
  }]
 }
 ```
-
-As you can see, these answers have a responses array, which are the responses to individual quiz questions. Answers also have a `totalScore` which is the score we will give when the user is finished answering the quiz.
-
-Heres the table for the responses:
-
-```js
-{
-  responses: [{
-    id: 'some-response-guid',
-    question: 'How many days in a row have you trained?',
-    selectedResponse: '2 days',
-    score: 3
-  }]
-}
-```
-
 The `selectedResponse` field is the text that the user selected, while the `score` is the number we use to caculate the `totalScore` for the `answer`.
 
 Its important to note that Firebase is taking care of authentication for us and isn't something I'm going to explain in detail with this project.
