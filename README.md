@@ -82,8 +82,10 @@ The `answers` collection will look like this:
     id: 'quiz-answer-guid-02',
     quizVersion: 0,
     quizId: 'some-quiz-guid',
-    totalScore: 50.0,
-    responses: [{id: 'some-response-guid'}]
+    userId: 'some-user-id',
+    question: 'How many days in a row have you trained?',
+    selectedResponse: '2 days',
+    score: 3
  }]
 }
 ```

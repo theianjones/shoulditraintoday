@@ -7,6 +7,14 @@ import {Question as QuestionType} from 'utils/generate-question-states'
 function Quiz() {
   const [current, send] = useShouldITrainMachine()
 
+  if (current.matches('savingAnswers')){
+    return <div>Saving answers...</div>
+  }
+
+  if(current.matches('error')){
+    return <div>Oh no, errors...</div>
+  }
+
   if (current.matches('success')) {
     const responses = current.context.responses
     const totalScore = responses.reduce((total, currentResponse) => {

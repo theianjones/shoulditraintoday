@@ -2,21 +2,23 @@ import {assign, createMachine} from 'xstate'
 import {
   Question,
   getNextQuestion,
-  getPrevQuestion,
 } from 'utils/generate-question-states'
 import quiz from 'data/should-i-train.json'
-import {find} from 'lodash'
+import { setAnswersForUser } from 'utils/firebase/db'
 
 export interface ShouldITrainQuizMachineContext {
-  responses: Score[]
+  responses: Answer[]
   currentQuestion: Question
 }
 
-interface Score {
-  score: number
-  selectedResponse: string
+type Answer = {
+  quizVersion: number
+  quizId: string
+  totalScore: number
   question: string
   questionId: string
+  selectedResponse: string
+  score: number
 }
 
 export type ShouldITrainQuizMachineEvent =
@@ -25,16 +27,28 @@ export type ShouldITrainQuizMachineEvent =
     }
   | {
       type: 'CONFIRM'
-      data: Score
+      data: Answer
     }
 
-const isScore = (eventData: any): eventData is Score => {
+const isAnswer = (eventData: any): eventData is Answer => {
   return (
-    (eventData as Score).question !== undefined &&
-    (eventData as Score).selectedResponse !== undefined &&
-    (eventData as Score).score !== undefined
+    (eventData as Answer).question !== undefined &&
+    (eventData as Answer).selectedResponse !== undefined &&
+    (eventData as Answer).score !== undefined
   )
 }
+
+const enteringFormStates = [
+  'enteringTrained',
+  'enteringSoreness',
+  'enteringExcited',
+  'enteringMood',
+  'enteringHormones',
+  'enteringImmune',
+  'enteringHours',
+  'enteringQuality',
+]
+
 
 const shouldITrainQuizMachine = createMachine<
   ShouldITrainQuizMachineContext,
@@ -125,10 +139,23 @@ const shouldITrainQuizMachine = createMachine<
             target: 'enteringHours',
           },
           CONFIRM: {
-            target: 'success',
+            target: 'savingAnswers',
             actions: ['assignScore', 'assignCurrentQuestion'],
           },
         },
+      },
+      savingAnswers: {
+        invoke: {
+          id: 'savingAnswers',
+          src: 'saveAllAnswers',
+          onError: {target: 'error'},
+          onDone: {
+            target: 'success'
+          }
+        }
+      },
+      error: {
+        type: 'final'
       },
       success: {
         type: 'final',
@@ -136,11 +163,13 @@ const shouldITrainQuizMachine = createMachine<
     },
   },
   {
-    services: {},
+    services: {
+      saveAllAnswers: (context) => setAnswersForUser(context.responses)
+    },
     actions: {
       assignScore: assign((context, event: any) => {
         const eventData = event.data
-        if (!isScore(eventData)) {
+        if (!isAnswer(eventData)) {
           return {}
         }
         const newResponses = context.responses.concat(eventData)
@@ -150,7 +179,7 @@ const shouldITrainQuizMachine = createMachine<
       }),
       assignCurrentQuestion: assign((context, event: any) => {
         const eventData = event.data
-        if (!isScore(eventData)) return {}
+        if (!isAnswer(eventData)) return {}
         const nextQuestion = getNextQuestion(eventData.questionId)
         return {currentQuestion: nextQuestion}
       }),
