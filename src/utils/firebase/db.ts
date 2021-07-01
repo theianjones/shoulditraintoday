@@ -45,13 +45,11 @@ export const setAnswersForUser = async (answers: Answer[]) => {
   }
 
   const totalScore = answers.reduce((score, answer) => score += answer.score, 0) * 4
-  return responsesCollectionRef.add({userId, createdAt, totalScore}).then(async (response) => {
-
+  return responsesCollectionRef.add({userId, createdAt, totalScore}).then((response) => {
     answers.forEach((answer, index) => {
       const docRef = answersCollectionRef.doc()
       answerBatch.set(docRef, {...answer, userId, createdAt, responseId: response.id, order: index})
     })
-    await answerBatch.commit()
-    return response
+    return answerBatch.commit().then(() => response)
   }).catch(e => e)
 }
