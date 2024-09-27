@@ -17,7 +17,10 @@ function Home() {
       </Head>
 
       <Header email={AuthUser.email} signOut={AuthUser.signOut} />
-      <Quiz></Quiz>
+      {AuthUser.email
+        ? <Quiz/>
+        : <div>Please login to take quiz</div>
+        }
     </div>
   )
 }

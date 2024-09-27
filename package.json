@@ -22,6 +22,7 @@
     "firebase-admin": "^9.6.0",
     "lodash": "^4.17.21",
     "mdx-prism": "^0.3.3",
+    "nanoid": "^3.1.23",
     "next": "10.0.9",
     "next-firebase-auth": "^0.13.0-alpha.4",
     "next-seo": "^4.23.0",
@@ -38,6 +39,7 @@
   },
   "devDependencies": {
     "@babel/plugin-transform-react-jsx": "^7.13.12",
+    "@firebase/auth-types": "^0.10.3",
     "@mdx-js/loader": "^1.6.22",
     "@tailwindcss/typography": "^0.4.0",
     "@testing-library/jest-dom": "^5.11.9",
